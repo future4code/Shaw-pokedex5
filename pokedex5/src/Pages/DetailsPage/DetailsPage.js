@@ -4,47 +4,18 @@ import {useNavigate} from "react-router-dom";
 import { goBack, goToPokedexPage} from "../../routes/coordinator";
 
 import axios from "axios";
-import styled from "styled-components";
+import {
+    PokeDetailBox, 
+    HeaderDetailPage,
+    BotaoBack,
+    BotaoPokedex,
+    PokeMain,
+    StatsBox,
+    TypeBox,
+} from "./styled";
 
 
-const PokeMain = styled.div`
-background-color: white;
-display: flex;
-flex-direction: row;
-height: 90vh;
-justify-content:space-around;
-margin: 15px 15 vw;
-align-items:center;
-`
-const HeaderDetailPage = styled.div`
-background-color: yellow;
-`
-const BotaoBack = styled.div`
-display: absolute;
-left: 10%;
-`
-const BotaoPokedex = styled.div`
-display: absolute;
-right: 10%;
-`
-const ImgPoke = styled.div`
-display: flex;
-flex-direction: column;
-border: black 1px;
-padding:10px;
-`
-const StatsBox = styled.div`
-display: flex;
-flex-direction: column;
-border: black 1px;
-padding:10px;
-`
-const TypeBox = styled.div`
-display: flex;
-flex-direction: column;
-border: black 1px;
-padding:10px;
-`
+
 
 const urlBase="https://pokeapi.co/api/v2/pokemon/"
 
@@ -57,19 +28,19 @@ const DetailsPage = () => {
     const [pokeImg, setPokeImg]=useState({})
     const [pokeStat, setPokeStat]=useState([])
     const [pokeType, setPokeType]=useState([])
-    //id vindo da requisição na home?
-    const [id, setId]=useState("")
+    //id vindo da requisição na home (props/context)
+    //const [id, setId]=useState("")
 
 
 
     useEffect(()=>{
         
-        axios.get(`${urlBase}stats/${id}`)
+        /*axios.get(`${urlBase}stats/${id}`)
         .then((response)=>{
             setId(response.data.id);   
         }).catch((erro)=>{
             alert(erro.data.response);
-        }) 
+        })*/
 
     },[])
 
