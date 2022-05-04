@@ -14,9 +14,6 @@ import {
     TypeBox,
 } from "./styled";
 
-
-
-
 const urlBase="https://pokeapi.co/api/v2/pokemon/"
 
 
@@ -55,7 +52,7 @@ const DetailsPage = () => {
 
     }
     
-    const showPokemon = pokeImg.map((img)=>{
+    const showPokemon = pokeImg && pokeImg.map((img)=>{
         return(
             <ImgPoke>
                 <img src={getPokemonsImgs}/>
