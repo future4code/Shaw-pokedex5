@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Pessoa 1: Matheus Augusto Moura de Lima
+- Pessoa 2: Renata Seabra Zamboni
+- Pessoa 3: Sabrina Caroline Pires da Silva
 
 Link do Surge: www.link.com.br
 
