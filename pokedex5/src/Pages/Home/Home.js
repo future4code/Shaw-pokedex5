@@ -10,33 +10,29 @@ const Home =() => {
 
     const getPokemons = async () =>{
         axios
-        .get(`https://pokeapi.co/api/v2/pokemon/1/`)
+        .get(`https://pokeapi.co/api/v2/pokemon`)
         .then((res)=>{
-        setListPokemon(res.data)
+        setListPokemon(res.data.results.url)
         })
         .catch((err)=> {
             alert("Erro! Sem pokemons.", err)
         })
     }
 
-    const renderPokemons = listPokemon ? (
-        listPokemon.map((pokemon)=>{
-        return(
-            <CardPokedex pokemon={pokemon}/>
-        )
-    })
-    ) : ( <p> Erro! </p>) 
-
-    // Array.map ((pokemon) =>{
-    //     axios.get(url do res.data${pokemon}
-    //     .then(res.data.sprint))
-    //   })
-
-    console.log(listPokemon);
-
     useEffect(()=>{
         getPokemons()
     }, [])
+
+    // const renderPokemons = listPokemon ? (
+    //     listPokemon.map((pokemon)=>{
+    //     return(
+    //         <CardPokedex pokemon={pokemon}/>
+    //     )
+    // })
+    // ) : ( <p> Erro! </p>) 
+
+    console.log(listPokemon);
+
     return(
         <div>
             <h1>Lista de Pokemons</h1>

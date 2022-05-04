@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
 
-export const CardPokedex = () =>{
+export const CardPokedex = (props) =>{
     const [imagePokemon, setImagePokemom] = useState([])
     
     const getImagePokemon = async () =>{
         axios
-        .get(`https://pokeapi.co/api/v2/pokemon/1/`)
+        .get(`${props.pokemon}`)
         .then((res)=>{
             setImagePokemom(res.data)
         })
@@ -27,6 +27,7 @@ export const CardPokedex = () =>{
     //         </div>
     //     )
     // })
+    
     console.log(imagePokemon);
 
     return(
