@@ -1,38 +1,52 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios"
+import React, { useState, useEffect, useContext } from "react";
+import { GlobalContext } from "../global/GlobalContext";
+import axios from "axios";
+import useRequestData from "../hooks/useRequest";
+import Base_URL from "../constants/url";
 
-export const CardPokedex = (props) =>{
-    const [imagePokemon, setImagePokemom] = useState([])
-    
-    const getImagePokemon = async () =>{
-        axios
-        .get(`${props.pokemon}`)
-        .then((res)=>{
-            setImagePokemom(res.data)
-        })
-        .catch((err)=>{
-            alert("Erro! Sem imagens.", err)
-        })
-    }
+export const CardPokedex = (props) => {
+  const [pokemonList, setPokemonList] = useState([]);
+  const vaiPokemon = useRequestData(`${Base_URL}`);
+  const listaPokemon = [];
+  const { pokemon, setPokemon, pokemonUse, setPokemonDetalhes } =
+    useContext(GlobalContext);
 
-    useEffect(()=>{
-        getImagePokemon()
-    }, [])
+  const getPokemon = async () => {
+    const pokemonInfo = vaiPokemon?.results;
+    const pokeNames = pokemonInfo?.map((pokeName) => {
+      return pokeName.name;
+    });
 
-    // const renderImagePokemons= imagePokemon.map((pokemon)=>{
-    //     return(
-    //         <div>
-    //             <p>{pokemon.name}</p>
-    //             <img src={pokemon.official}/>
-    //         </div>
-    //     )
-    // })
-    
-    console.log(imagePokemon);
+    const pokemons = pokeNames?.map(async (pokeName) => {
+      const newUrl = `${Base_URL}${pokeName}`;
+        let response;
+        try {
+          response = await axios.get(newUrl);
+        } catch (err) {
+          console.log(err);
+        } finally {
+          return response.data;
+        }
+    });
+    console.log(pokemons);
+    const pokePromisses = await Promise.all(pokemons);
+    setPokemonList(pokePromisses);
+  };
 
-    return(
-        <div>
-            {/* {renderImagePokemons} */}
-        </div>
-    )
-}
+  useEffect(() => {
+    getPokemon();
+  }, [vaiPokemon]);
+
+  const renderPokemon = pokemonList?.map((pokemon) => {
+    return (
+      <div>
+        {pokemon.name}
+        <img src={pokemon.sprites.front_default} />
+        <button onClick={() => setPokemonDetalhes(pokemon)}>
+          Ver detalhes
+        </button>
+      </div>
+    );
+  });
+  return <div>{renderPokemon}</div>;
+};
