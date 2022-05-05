@@ -1,119 +1,75 @@
-// import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import { GlobalContext } from "../../global/GlobalContext";
 
-// import {useNavigate} from "react-router-dom";
-// import { goBack, goToPokedexPage} from "../../routes/coordinator";
-
-// import axios from "axios";
-// import {
-//     PokeDetailBox, 
-//     HeaderDetailPage,
-//     BotaoBack,
-//     BotaoPokedex,
-//     PokeMain,
-//     StatsBox,
-//     TypeBox,
-// } from "./styled";
-
-// const urlBase="https://pokeapi.co/api/v2/pokemon/"
+import {useNavigate, useParams} from "react-router-dom";
+import { goBack, goToPokedexPage} from "../../routes/coordinator";
 
 
 
-// const DetailsPage = () => {
+import axios from "axios";
+import {
+    PokeDetailBox, 
+    HeaderDetailPage,
+    //BotaoBack,
+    //BotaoPokedex,
+    PokeMain,
+    ImgPoke,
+    StatsBox,
+    TypeBox,
+} from "./styled";
 
-//     const navigate = useNavigate()
-
-//     const [pokeImg, setPokeImg]=useState({})
-//     const [pokeStat, setPokeStat]=useState([])
-//     const [pokeType, setPokeType]=useState([])
-//     //id vindo da requisição na home (props/context)
-//     //const [id, setId]=useState("")
-
-
-
-//     useEffect(()=>{
-        
-//         /*axios.get(`${urlBase}stats/${id}`)
-//         .then((response)=>{
-//             setId(response.data.id);   
-//         }).catch((erro)=>{
-//             alert(erro.data.response);
-//         })*/
-
-//     },[])
+//import useRequestData from "../../hooks/useRequest";
+import Base_URL from "../../constants/url";
 
 
-//     const getPokemonsImgs=()=>{
-//         axios.get(`${urlBase}stats/${id}`)
-//         .then((response)=>{
-//             setPokeImg(response.data.sprites.versions['generation-v']['black-white'].animated.front_default)
-//         }).catch((erro)=>{
-//             alert(erro.data.response)
-//         })
+const DetailsPage = (props) => {
 
-//     }
+    const {pokemon, pokemonDetalhes, setPokemonDetalhes} = useContext(GlobalContext)
+
+    //imgPoke = pokemonDetalhes.sprites.versions['generation-v']['black-white'].animated.front_default;
     
-//     const showPokemon = pokeImg && pokeImg.map((img)=>{
-//         return(
-//             <ImgPoke>
-//                 <img src={getPokemonsImgs}/>
-//             </ImgPoke>      
 
-//         )
+    const navigate = useNavigate()
+    const params = useParams()
+    console.log(params.pokemon)
 
-//     })
+    //get.axios urlbase/params.pokemon
+    //const pokeRequest = useRequestData(`${Base_URL}${params.pokemon}`).map;
+    console.log(`${Base_URL}${params.pokemon}`)
 
-//     const getPokemonsStats=()=>{
-//         axios.get(`${urlBase}stats/${id}`)
-//         .then((response)=>{
-//             setPokeStat(response.data.stat)
-//         }).catch((erro)=>{
-//             alert(erro.data.response)
-//         })
+  
 
-//     }
+    return(
+        <PokeDetailBox>
 
-
-
-
-//     return(
-//         <PokeDetailBox>
-
-//             <HeaderDetailPage>
-//                 <BotaoBack onClick={()=> goBack(navigate)}>Voltar</BotaoBack>
-//                 <BotaoPokedex onClick={()=> goToPokedexPage(navigate)}>Ir para Pokedex</BotaoPokedex>
-//             </HeaderDetailPage>
+            <HeaderDetailPage>
+                <button onClick={()=> goBack(navigate)}>Voltar</button>
+                <button onClick={()=> goToPokedexPage(navigate)}>Ir para Pokedex</button>
+            </HeaderDetailPage>
 
            
-//             <PokeMain>
-//                 <h1>Detalhes do Pokemon</h1>
+            <PokeMain>
+                <h1>Detalhes do Pokemon</h1>
 
-//                 {showPokemon}           
-
+                <ImgPoke>
+                {/* <img src={pokeRequest.pokemonDetalhes.sprites.versions['generation-v']['black-white'].animated.front_default}/> */}
+            	</ImgPoke>                      
+                  
                 
-//                 <StatsBox>
-//                     <h3>Poderes</h3>
-//                     <ul>
-//                         <li key={stat.id}>
-//                             <p>{stat.hp}</p>
-//                             <p>{stat.attack}</p>
-//                             <p>{stat.specialAttack}</p>
-//                             <p>{stat.defense}</p>
-//                             <p>{stat.specialDefense}</p>
-//                             <p>{stat.speed}</p>                        
-//                         </li>
-//                     </ul>
-//                 </StatsBox>
+                <StatsBox>
+                    <h3>Poderes</h3>
+                    <ul></ul>
+                </StatsBox>
 
-                
-//                 <TypeBox>
-//                 <h3>Principais ataques</h3>
+                <TypeBox>
+                    <h3>Principais ataques</h3>
+                    <ul></ul>
+                </TypeBox>
 
-//                 </TypeBox>
-
-//             </PokeMain>            
+            </PokeMain>            
             
-//         </PokeDetailBox>
-//     )
-// }
+        </PokeDetailBox>
+    )
+}
 
-// export default DetailsPage;
+export default DetailsPage;
