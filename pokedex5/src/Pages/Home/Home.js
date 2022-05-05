@@ -1,25 +1,24 @@
-import { goToDetailsPage, goToPokedexPage } from "../../routes/coordinator"
+import { goToDetailsPage, goToPokedexPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import  React  from "react";
+import React from "react";
+import { CardPokedex } from "../../components/CardPokedex";
 
+const Home = () => {
+  const navigate = useNavigate();
 
+  return (
+    <div>
+      <h1>Lista de Pokemons</h1>
 
-const Home =() => {
-    const navigate = useNavigate()
-  
-   
-    return(
-        <div>
-            <h1>Lista de Pokemons</h1>
-            
-            <button onClick={()=> goToPokedexPage(navigate)}>Ir para Pokedex</button>
-            <div>
-                <p>Imagem</p>
-                <button >Adicionar a Pokédex</button>
-                <button onClick={() => goToDetailsPage(navigate)}>Detalhes</button>
-            </div>
-        </div>
-    )
-}
+      <button onClick={() => goToPokedexPage(navigate)}>Ir para Pokedex</button>
+      <div>
+       <CardPokedex/>
+        <p>Imagem</p>
+        <button>Adicionar a Pokédex</button>
+        <button onClick={() => goToDetailsPage(navigate)}>Detalhes</button>
+      </div>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

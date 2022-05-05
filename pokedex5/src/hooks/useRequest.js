@@ -1,9 +1,6 @@
 import { useEffect,useState } from "react";
 import axios from "axios";
 
-
-
-
 const useRequestData = (url) => {
     const [data, setData] = useState();
   
@@ -19,7 +16,7 @@ const useRequestData = (url) => {
         });
     }, [url]);
   
-    return [data];
+    return data
   };
   
   export default useRequestData;
