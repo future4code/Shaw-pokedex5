@@ -7,7 +7,6 @@ export const CardPokedex = (props) => {
 
   const navigate = useNavigate();
   const renderPokemon = props.pokemonList?.map((pokemon) => {    
- 
     console.log(pokemon.name)
     return (
       <div>
