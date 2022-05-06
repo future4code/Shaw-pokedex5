@@ -4,9 +4,6 @@ import { GlobalContext } from "../../global/GlobalContext";
 import {useNavigate, useParams} from "react-router-dom";
 import { goBack, goToPokedexPage} from "../../routes/coordinator";
 
-
-
-import axios from "axios";
 import {
     PokeDetailBox, 
     HeaderDetailPage,
@@ -18,43 +15,42 @@ import {
     TypeBox,
 } from "./styled";
 
-//import useRequestData from "../../hooks/useRequest";
+import useRequestData from "../../hooks/useRequest";
 import Base_URL from "../../constants/url";
 
 
 const DetailsPage = (props) => {
 
-    const {pokemon, pokemonDetalhes, setPokemonDetalhes} = useContext(GlobalContext)
-
-    //imgPoke = pokemonDetalhes.sprites.versions['generation-v']['black-white'].animated.front_default;
-    
+    const {pokemon, pokemonDetalhes, setPokemonDetalhes} = useContext(GlobalContext)       
 
     const navigate = useNavigate()
     const params = useParams()
+
     console.log(params.pokemon)
+    console.log(`${Base_URL}${params.pokemon}`)   
 
-    //get.axios urlbase/params.pokemon
-    //const pokeRequest = useRequestData(`${Base_URL}${params.pokemon}`).map;
-    console.log(`${Base_URL}${params.pokemon}`)
+    // get.axios urlbase/params.pokemon
+    const pokeChoiceRequest = useRequestData(`${Base_URL}${params.pokemon}`);
 
-  
-
-    return(
-        <PokeDetailBox>
-
+    const setPokeChoice = async()=>{
+        const pokeDetail = pokeChoiceRequest?.results;
+        const pokePoints = pokeDetail?.map((pokeChoice)=>{
+        
+        return(
+            <PokeDetailBox>
             <HeaderDetailPage>
                 <button onClick={()=> goBack(navigate)}>Voltar</button>
                 <button onClick={()=> goToPokedexPage(navigate)}>Ir para Pokedex</button>
             </HeaderDetailPage>
-
            
             <PokeMain>
                 <h1>Detalhes do Pokemon</h1>
-
+                <div>
+                    {pokeChoice.name}
+                </div>
                 <ImgPoke>
-                {/* <img src={pokeRequest.pokemonDetalhes.sprites.versions['generation-v']['black-white'].animated.front_default}/> */}
-            	</ImgPoke>                      
-                  
+                <img src={pokeChoice.sprites.versions['generation-v']['black-white'].animated.front_default}/>
+            	</ImgPoke>                 
                 
                 <StatsBox>
                     <h3>Poderes</h3>
@@ -69,7 +65,10 @@ const DetailsPage = (props) => {
             </PokeMain>            
             
         </PokeDetailBox>
-    )
-}
+        )
+        });
 
+        return <div>{setPokeChoice}</div>
+    }
+}
 export default DetailsPage;

@@ -5,18 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 export const CardPokedex = (props) => {
 
-  const onClickBotao =()=>{
-
-  }
-
   const navigate = useNavigate();
-  const renderPokemon = props.pokemonList?.map((pokemon) => {
-    
-    // const getPokemon = async () => {
-    //   const pokeDetail = pokeRequest?.results;
-    //   const pokeNames = pokemonUnico?.map((pokeName) => {
-    //     return pokeName.name;
-    //   });
+  const renderPokemon = props.pokemonList?.map((pokemon) => {    
+ 
     console.log(pokemon.name)
     return (
       <div>

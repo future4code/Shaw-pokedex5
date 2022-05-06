@@ -16,6 +16,7 @@ const Home = () => {
 
   const { setPokemonDetalhes, setPokedex, pokedex } =
     useContext(GlobalContext);
+    
   const getPokemon = async () => {
     const pokemonInfo = pokeRequest?.results;
     const pokeNames = pokemonInfo?.map((pokeName) => {
