@@ -9,6 +9,7 @@ import { GlobalContext } from "../../global/GlobalContext";
 import {MainContainer} from "./styled"
 
 const Home = () => {
+
   const [pokemonList, setPokemonList] = useState([]);
   const pokeRequest = useRequestData(`${Base_URL}`);
   const listaPokemon = [];
@@ -41,6 +42,7 @@ const Home = () => {
   useEffect(() => {
     getPokemon();
   }, [pokeRequest]);
+
 
   return (
     <div>
