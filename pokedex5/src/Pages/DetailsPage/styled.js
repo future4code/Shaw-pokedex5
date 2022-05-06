@@ -38,3 +38,7 @@ flex-direction: column;
 border: black 1px;
 padding:10px;
 `;
+
+export const PokeDetailBox =styled.div`
+
+`

@@ -7,10 +7,11 @@ import axios from "axios";
 export const GlobalState = (props) =>{
     const [pokemon, setPokemon] = useState([])
     const [pokemonDetalhes, setPokemonDetalhes] = useState({})
+    const [pokedex, setPokedex] = useState({})
     const pokemonUse = useRequestData(`${Base_Url}`)  
 
     return(
-        <GlobalContext.Provider value={{pokemon,setPokemon, pokemonUse, setPokemonDetalhes}}>
+        <GlobalContext.Provider value={{pokemon,setPokemon, pokemonUse, setPokemonDetalhes, setPokedex, pokedex}}>
             
             {props.children}
             
