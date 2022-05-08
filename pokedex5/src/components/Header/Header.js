@@ -12,7 +12,7 @@ export const Header = () => {
       <ImgLogo src={pokemonLogo}/>
       <ImgTitulo src={titulo}/>
       <button 
-      type="submit"
+      // type="submit"
       onClick={() => goToPokedexPage(navigate)}>
       <GameController size={38}/> POKÉDEX
       </button>

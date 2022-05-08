@@ -1,6 +1,6 @@
 import { goToDetailsPage, goBack } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useContext } from "react";
 import {
   HeaderContainer,
   ImgLogo,
@@ -10,10 +10,18 @@ import { CaretDoubleLeft, ListDashes, TrashSimple } from "phosphor-react";
 import pokemonLogo from "../../assets/pokebola.png";
 import titulo from "../../assets/logo.png";
 import { ButtonDetalhes, ButtonRemove, ContainerPokedex } from "./styled";
+import { CardPokedex } from "../../components/CardPokedex/CardPokedex";
+import { GlobalContext } from "../../global/GlobalContext";
 
-const Pokedex = () => {
+const Pokedex = (props) => {
   const navigate = useNavigate();
-
+  const { setPokemonDetalhes, setPokedex, pokedex,pokemonPokedex, setPokemonPokedex } =
+  useContext(GlobalContext);
+ 
+  
+ 
+  console.log("vem",pokedex)
+  
   return (
     <div>
       <HeaderContainer>
@@ -25,7 +33,8 @@ const Pokedex = () => {
       </HeaderContainer>
       <ContainerPokedex>
         <h1>Pokédex</h1>
-        <p>Imagem</p>
+     <p>{pokedex}</p>
+     {/* <img src={pokedex.sprites.versions['generation-v']['black-white'].animated.front_default}/> */}
         <ButtonDetalhes onClick={() => goToDetailsPage(navigate)}>
           <ListDashes size={20} />
           Ver detalhes

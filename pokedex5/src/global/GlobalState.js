@@ -8,10 +8,11 @@ export const GlobalState = (props) =>{
     const [pokemon, setPokemon] = useState([])
     const [pokemonDetalhes, setPokemonDetalhes] = useState({})
     const [pokedex, setPokedex] = useState({})
+    const [pokemonPokedex, setPokemonPokedex] = useState([])
     const pokemonUse = useRequestData(`${Base_Url}`)  
 
     return(
-        <GlobalContext.Provider value={{pokemon,setPokemon, pokemonUse, setPokemonDetalhes, setPokedex, pokedex}}>
+        <GlobalContext.Provider value={{pokemon,setPokemon, pokemonUse, setPokemonDetalhes, setPokedex, pokedex,pokemonPokedex, setPokemonPokedex}}>
             
             {props.children}
             
