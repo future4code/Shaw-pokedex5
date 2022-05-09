@@ -4,10 +4,14 @@ import { GlobalContext } from "../../global/GlobalContext";
 import {useNavigate, useParams} from "react-router-dom";
 import { goBack, goToPokedexPage} from "../../routes/coordinator";
 
+import { CaretDoubleLeft, GameController, ListDashes, TrashSimple } from "phosphor-react";
+import pokemonLogo from "../../assets/pokebola.png";
+import titulo from "../../assets/logo.png";
+
 import {
     PokeDetailBox, 
-    HeaderDetailPage,
-    //BotaoBack,
+    //HeaderDetailPage,
+    BotaoBack,
     //BotaoPokedex,
     PokeMain,
     ImgPoke,
@@ -15,9 +19,16 @@ import {
     TypeBox,
 } from "./styled";
 
+import {
+    HeaderContainer,
+    ImgLogo,
+    ImgTitulo,
+  } from "../../components/Header/style";
+
 import useRequestData from "../../hooks/useRequest";
 import Base_URL from "../../constants/url";
 import axios from "axios";
+import { CardPokedexStyle } from "../../components/CardPokedex/styled";
 
 
 const DetailsPage = (props) => {
@@ -36,7 +47,10 @@ const DetailsPage = (props) => {
         pokeChoiceRequest?.map((pokeImg)=>{
            axios.get(pokeImg)
             .then((res)=>{
-                setPokeChoiceImg(res.data.sprites.versions['generation-v']['black-white'].animated.front_default)
+                setPokeChoiceImg(res.data)
+                return(
+                    <img src={pokeImg.sprites.versions['generation-v']['black-white'].animated.front_default}/>
+                )
             }).catch((error)=>console.log(error.message))
         })       
     };
@@ -45,33 +59,42 @@ const DetailsPage = (props) => {
     const setPokeStat = async()=>{
         const pokeChoiceStat = pokeChoiceRequest?.stats;
         const pokeStats = pokeChoiceStat?.map((pokeStat)=>{
-           return pokeStats.stat;
+           return <li>{pokeStats.stat}</li>
         });         
     };    
     console.log(setPokeStat())
    
     return(
         <PokeDetailBox>
-        <HeaderDetailPage>
-            <button onClick={()=> goBack(navigate)}>Voltar</button>
-            <button onClick={()=> goToPokedexPage(navigate)}>Ir para Pokedex</button>
-        </HeaderDetailPage>
+        
+        <HeaderContainer>
+            {/* <ImgLogo src={pokemonLogo} /> */}
+            <ImgTitulo src={titulo} />
+
+            <BotaoBack type="submit" onClick={() => goBack(navigate)}>
+            <CaretDoubleLeft size={38} /> VOLTAR
+            </BotaoBack>
+
+            <button  onClick={() => goToPokedexPage(navigate)}>
+            <GameController size={38}/> POKÉDEX
+            </button>
+        </HeaderContainer>     
 
         <div>
             <h1>Detalhes de</h1>
             <h2>{setPokeChoiceName}</h2>
         </div>
        
-        <PokeMain>         
+        <PokeMain> 
 
             <ImgPoke>
-            {setPokeChoiceImg}  
-            </ImgPoke>                 
+               {setPokeChoiceImg}  
+            </ImgPoke>                              
             
             <StatsBox>
                 <h3>Poderes</h3>
                 <ul>
-                    <li>{setPokeStat}</li>
+                    {setPokeStat}
                 </ul>
             </StatsBox>
 
