@@ -8,7 +8,7 @@ import useRequestData from "../../hooks/useRequest";
 import { GlobalContext } from "../../global/GlobalContext";
 import {MainContainer} from "./styled"
 
-const Home = () => {
+const Home = (props) => {
 
   const [pokemonList, setPokemonList] = useState([]);
   const pokeRequest = useRequestData(`${Base_URL}`);
@@ -16,10 +16,18 @@ const Home = () => {
   const navigate = useNavigate();
   const { setPokemonDetalhes, setPokedex, pokedex } =
     useContext(GlobalContext);
+   
+    // setPokedex(pokemonList)
+ 
+    
+ 
+
+  // console.log("homepoke",pokedex)
 
   const getPokemon = async () => {
     const pokemonInfo = pokeRequest?.results;
     const pokeNames = pokemonInfo?.map((pokeName) => {
+      
       return pokeName.name;
     });
 
@@ -51,7 +59,9 @@ const Home = () => {
        <CardPokedex pokemonList={pokemonList}
        setPokemonList={setPokemonList}
        setPokemonDetalhes={setPokemonDetalhes}
-       setPokedex = {setPokedex}/>
+       setPokedex = {setPokedex}
+      
+       />
       </MainContainer>
     </div>
   );
