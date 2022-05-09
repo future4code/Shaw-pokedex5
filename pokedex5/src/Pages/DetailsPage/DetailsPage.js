@@ -22,19 +22,15 @@ import axios from "axios";
 
 const DetailsPage = (props) => {
 
-    const {pokemon, pokemonDetalhes, setPokemonDetalhes} = useContext(GlobalContext) 
-      
-
+    const {pokemon, pokemonDetalhes, setPokemonDetalhes} = useContext(GlobalContext)
     const navigate = useNavigate()
     const params = useParams()
     //const certificaParams = params && params.pokemon
-
     const pokeChoiceRequest = useRequestData(`${Base_URL}${params.pokemon}`);    
     //console.log(`${Base_URL}${params.pokemon}`)
-
+    
     const setPokeChoiceName = params.pokemon
     //console.log(setPokeChoiceName)
-
     
     const setPokeChoiceImg = async()=>{
         pokeChoiceRequest?.map((pokeImg)=>{
@@ -42,27 +38,17 @@ const DetailsPage = (props) => {
             .then((res)=>{
                 setPokeChoiceImg(res.data.sprites.versions['generation-v']['black-white'].animated.front_default)
             }).catch((error)=>console.log(error.message))
-        })    
-        
-    };   
-
+        })       
+    };
     console.log(setPokeChoiceImg());
 
     const setPokeStat = async()=>{
         const pokeChoiceStat = pokeChoiceRequest?.stats;
         const pokeStats = pokeChoiceStat?.map((pokeStat)=>{
            return pokeStats.stat;
-        });        
-          
-    }; 
-    
+        });         
+    };    
     console.log(setPokeStat())
-   
-
-
-
-   
-   
    
     return(
         <PokeDetailBox>
@@ -76,8 +62,7 @@ const DetailsPage = (props) => {
             <h2>{setPokeChoiceName}</h2>
         </div>
        
-        <PokeMain>       
-           
+        <PokeMain>         
 
             <ImgPoke>
             {setPokeChoiceImg}  
