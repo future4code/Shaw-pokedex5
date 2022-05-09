@@ -15,6 +15,8 @@ align-items:center;
 
 export const HeaderDetailPage = styled.div`
 background-color: yellow;
+height:50px;
+
 `;
 
 export const BotaoBack = styled.div`
@@ -26,7 +28,6 @@ flex-direction: row;
 export const BotaoPokedex = styled.div`
 display: flex;
 flex-direction: row;
-
 `;
 
 export const ImgPoke = styled.div`
