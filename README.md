@@ -1,16 +1,17 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Pessoa 1: Matheus Augusto Moura de Lima
+- Pessoa 2: Renata Seabra Zamboni
+- Pessoa 3: Sabrina Caroline Pires da Silva
 
-Link do Surge: www.link.com.br
+Link do Surge: numberless-bike.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- Item 1: Funções para exibir lista de pokemons na Home
+- Item 2: Botões de rotas
+- Item 3: CSS/styled
 
 O que não funciona: 
-- Item 3
-- Item 4
+- Item 1: Requisições de Detail Page
+- Item 2: Adicionar/renderizar mais de um pokemon para Pokedex
